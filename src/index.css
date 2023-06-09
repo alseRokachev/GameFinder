@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;300;500&family=Nunito:wght@200;300;400;500&display=swap');
+
+/*font-family: 'Geologica', sans-serif;*/
+/*font-family: 'Nunito', sans-serif;*/
+
+html {
+    width:100vw;
+    overflow-x:hidden;
+}
+
+.text-with-stroke {
+    color: transparent;
+    -webkit-text-stroke: 2px #000000;
+}
+
+.font-nunito {
+    font-family: 'Nunito', sans-serif;
+}
+
+.font-geo {
+    font-family: 'Geologica', sans-serif;
+}
+
+.scrollbar-x::-webkit-scrollbar {
+    background: transparent;
+    height: 8px;
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 5px;
+}
