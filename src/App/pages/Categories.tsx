@@ -16,6 +16,8 @@ export const Categories = memo(() => {
             className={'sm:flex flex-wrap md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-16 place-items-center'}>
             <CategoryBlock title={'Horror'} onClick={() => onClick('horror')}/>
             <CategoryBlock title={'RPG'} onClick={() => onClick('rpg')}/>
+            <CategoryBlock title={'Fantasy'} onClick={() => onClick('fantasy')}/>
+            <CategoryBlock title={'Action'} onClick={() => onClick('action')}/>
         </div>
     )
 })

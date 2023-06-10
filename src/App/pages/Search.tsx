@@ -39,7 +39,10 @@ export const Search = () => {
     const [filteredGames, setFilteredGames] = useState<IGameCard[]>([])
     const propertyFilterTheme = useAppSelector(state => state.searchData.gameGenre)
     const searchData = useAppSelector(state => state.searchData.currentSearchData)
-    const gamesData = useAppSelector(state => state.allGamesData.gamesData)
+    const gamesData = [
+        useAppSelector(state => state.allGamesData.gamesData),
+        useAppSelector(state => state.allGamesData.newestGamesData),
+        useAppSelector(state => state.allGamesData.consoleGames)].flat()
     useEffect(() => setFilteredGames(filterBy(gamesData, searchData, propertyFilterTheme)), [propertyFilterTheme, searchData])
     return (
         <>

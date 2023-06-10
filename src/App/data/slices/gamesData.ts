@@ -4,12 +4,14 @@ import {IGame} from "../../types/interfaces.ts";
 
 interface IGames {
     gamesData: IGame[],
-    newestGamesData: IGame[]
+    newestGamesData: IGame[],
+    consoleGames: IGame[]
 }
 
 const initialState: IGames = {
     gamesData: [],
-    newestGamesData: []
+    newestGamesData: [],
+    consoleGames : []
 }
 
 export const GamesData = createSlice({
@@ -22,9 +24,12 @@ export const GamesData = createSlice({
         },
         addNewestGames: (state, action: PayloadAction<IGame[]>) => {
             state.newestGamesData = action.payload
+        },
+        addConsoleGames: (state,action : PayloadAction<IGame[]>) => {
+            state.consoleGames = action.payload
         }
     }
 })
 
 export default GamesData.reducer
-export const {addGames, addNewestGames} = GamesData.actions
+export const {addGames, addNewestGames, addConsoleGames} = GamesData.actions

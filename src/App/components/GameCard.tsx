@@ -2,6 +2,7 @@ import {IGame} from "../types/interfaces.ts";
 import {memo, useState} from "react";
 import {MetacriticMark} from "./MetacriticMark.tsx";
 import {useInView} from "react-intersection-observer";
+import {useAppSelector} from "../data/store/store.ts";
 
 interface IGameCard extends IGame {
     parent_platforms?: IPlatforms[],
@@ -36,8 +37,15 @@ interface IGameProps {
     loading?: boolean
 }
 
+const Platforms = {
+    'pc': 'icons8-windows-100.png',
+    'playstation': 'icons8-playstation-100.png',
+    'xbox' : 'icons8-xbox-100.png',
+    'nintendo' : 'icons8-nintendo-switch-handheld-100.png'
+}
 
 export const GameCard = memo(({data, loading}: IGameProps) => {
+    const darkTheme = useAppSelector(state => state.userData.darkTheme)
     const [cardHover, setCardHover] = useState<boolean>(false)
     const {ref, inView} = useInView({threshold: 0.1, triggerOnce: true})
     return (
@@ -51,21 +59,45 @@ export const GameCard = memo(({data, loading}: IGameProps) => {
                                  className={`rounded-t-xl w-full min-h-[45%] max-h-[45%]`}/>
                             <MetacriticMark mark={data.metacritic}/>
                             <div
-                                className={`${cardHover ? 'h-[300px]' : 'h-[55%]'} absolute bottom-0 w-full bg-white rounded-b-xl duration-500 overflow-y-hidden`}>
+                                className={`${cardHover ? 'h-[300px]' : 'h-[55%]'} ${darkTheme ? 'bg-slate-800 text-slate-100' : 'bg-slate-200'} absolute bottom-0 w-full rounded-b-xl duration-500 overflow-y-hidden`}>
                                 <p className={'text-center mt-5 text-xl px-3'}>{data.name}</p>
                                 <div className={'flex flex-wrap justify-center text-sm px-3'}>
                                     <p className={'mr-1'}><b>Available on</b> :</p>
-                                    {data?.parent_platforms?.map((platform, index) => (
-                                        <span
-                                            className={'mr-1'}>{platform.platform.name}{index !== data?.parent_platforms!.length - 1 && ','}</span>
+                                    {data?.parent_platforms?.map((platform) => (
+                                        <>
+                                            {platform.platform.name.toLowerCase() === 'pc' && (
+                                                <span
+                                                    className={'mr-1 flex items-center'}><img src={Platforms.pc} alt=""
+                                                                                              className={'w-4 h-4'}/>
+                                                </span>
+                                            )}
+                                            {platform.platform.name.toLowerCase() === 'playstation' && (
+                                                <span
+                                                    className={'mr-1 flex items-center'}><img src={Platforms.playstation} alt=""
+                                                                                              className={'w-4 h-4'}/>
+                                                </span>
+                                            )}
+                                            {platform.platform.name.toLowerCase() === 'xbox' && (
+                                                <span
+                                                    className={'mr-1 flex items-center'}><img src={Platforms.xbox} alt=""
+                                                                                              className={'w-4 h-4'}/>
+                                                </span>
+                                            )}
+                                            {platform.platform.name.toLowerCase() === 'nintendo' && (
+                                                <span
+                                                    className={'mr-1 flex items-center'}><img src={Platforms.nintendo} alt=""
+                                                                                              className={'w-4 h-4'}/>
+                                                </span>
+                                            )}
+                                        </>
                                     ))}
                                 </div>
                                 {data.stores && (
                                     <div className={'flex flex-wrap justify-center text-sm px-3'}>
                                         <p className={'mr-1'}><b>Stores</b> :</p>
-                                        {data?.stores.map((store, index) => (
+                                        {data?.stores.map((store) => (
                                             <span
-                                                className={'mr-1'}>{store.store.name}{index !== data?.parent_platforms!.length - 1 && ','}</span>
+                                                className={'mr-1 text-stone-400'}>{store.store.name}</span>
                                         ))}
                                     </div>
                                 )}

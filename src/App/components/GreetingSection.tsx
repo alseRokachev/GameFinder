@@ -8,7 +8,7 @@ interface IGameProps {
 
 export const GreetingSection: React.FC<IGameProps> = React.memo(({loading}) => {
     const [randomNumb, setRandomNumb] = useState(0)
-    useEffect(() => setRandomNumb(getRandom(20)), [])
+    useEffect(() => setRandomNumb(getRandom(10)), [])
     const gameData = useAppSelector(state => state.allGamesData.gamesData[randomNumb])
     return (
         <div className="w-full h-full flex justify-center">
@@ -21,7 +21,7 @@ export const GreetingSection: React.FC<IGameProps> = React.memo(({loading}) => {
                         className={`${!loading ? 'h-3/4' : 'h-1/2'} bg-gradient-to-t from-black w-full absolute bottom-0 duration-700 z-50`}></div>
                     <p className={`${!loading ? 'opacity-100 duration-700 bottom-20' : 'opacity-0 -bottom-full'} left-12 absolute font-bold text-5xl text-slate-50 z-50 font-nunito`}>{gameData?.name}</p>
                     <button
-                        className={`${!loading ? 'opacity-100 duration-1000 bottom-10' : 'opacity-0'} hover:bg-slate-50 hover:text-slate-950 hover:duration-500 left-12 border border-slate-50 text-slate-50 absolute z-50 px-8 py-1`}>See
+                        className={`${!loading ? 'opacity-100 duration-1000 bottom-10' : 'opacity-0'} font-poppins hover:bg-slate-50 hover:text-slate-950 hover:duration-500 left-12 border border-slate-50 text-slate-50 absolute z-50 px-8 py-1`}>See
                         more
                     </button>
                 </div>

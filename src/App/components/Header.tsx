@@ -26,11 +26,11 @@ export const Header = React.memo(() => {
         return (
             <header className={`${darkTheme ? 'text-slate-300' : 'text-slate-950'} w-full flex h-20 duration-500`}>
                 <div className="w-1/2 h-full flex items-center relative">
-                    <div className={'font-bold w-1/4 hover:cursor-pointer flex items-center'} onClick={() => {
-                        navigate('/')
-                        setInputValue('')
-                    }}>
-                        <span>gamer.io</span>
+                    <div className={'font-bold w-1/4 hover:cursor-pointer flex items-center'}>
+                        <span onClick={() => {
+                            navigate('/')
+                            setInputValue('')
+                        }}>gamer.io</span>
                         <div
                             className={`${darkTheme ? 'bg-slate-900 border border-slate-500' : 'bg-slate-200 border border-slate-900'} ml-4 w-10 h-5 rounded-xl flex items-center relative`}
                             onClick={() => dispatch(changeTheme())}>
@@ -46,7 +46,7 @@ export const Header = React.memo(() => {
                                onInput={(e: SyntheticEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)}
                                className={`${darkTheme ? 'border-slate-400 outline-slate-100 text-black' : 'border-black outline-black'} w-full h-full border-2 rounded-2xl focus:bg-slate-100 pl-3 pr-28 relative z-50`}/>
                         <button onClick={(e) => handleSearch(e)}
-                                className={`${darkTheme ? 'bg-slate-100 border-slate-400 text-slate-950' : 'bg-black text-slate-50 border-black'} absolute right-0  w-24 h-full rounded-2xl border text-sm z-50`}>Search
+                                className={`${darkTheme ? 'bg-slate-100 border-slate-400 text-slate-950' : 'bg-black text-slate-50 border-black'} font-bold absolute right-0  w-24 h-full rounded-2xl border text-sm z-50`}>Search
                         </button>
                     </div>
                 </div>
@@ -54,8 +54,14 @@ export const Header = React.memo(() => {
                     <div className="w-1/3 flex items-center justify-center font-medium"
                          onClick={() => navigate('/categories')}>Categories
                     </div>
-                    <div className="w-1/3 flex items-center justify-center font-medium">Newest</div>
-                    <div className="w-1/3 flex items-center justify-center font-medium">DLC</div>
+                    <div className="w-1/3 flex items-center justify-center font-medium"
+                         onClick={() => navigate('/newest')}
+                    >Newest
+                    </div>
+                    <div className="w-1/3 flex items-center justify-center font-medium"
+                         onClick={() => navigate('/console')}>
+                        Console
+                    </div>
                 </div>
             </header>
         )
